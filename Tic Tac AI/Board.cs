@@ -22,6 +22,7 @@ namespace Tic
         }
         public void PrintBoard()
         {
+            Console.WriteLine(" _____  _____  _____ ");
             for (int i = 0; i < BoardSize; i++)
             {
 

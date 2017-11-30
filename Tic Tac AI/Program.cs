@@ -8,7 +8,7 @@ namespace Tic
         static void Main(string[] args)
         {
             int choice = 0;
-            while (choice != 0)
+            while (choice != 9)
             {
                 Console.WriteLine("------Tic Tac Toe against AI------");
                 Console.WriteLine("|                                 |");
@@ -26,11 +26,11 @@ namespace Tic
 
                 if (int.TryParse(Console.ReadLine(), out boardSize) != false && boardSize <= 8 && boardSize >= 3)
                 {
+                    choice = boardSize;
                     Game game = new Game(boardSize);
                     game.Play();
                 }
 
-                choice = boardSize; 
 
                 else
                 {

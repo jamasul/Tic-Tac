@@ -20,10 +20,7 @@ namespace Tic
         }
         private void ConsoleTextInMiddle()
         {
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
+            Console.SetCursorPosition(0, 10);
         }
         public void Play()
         {
