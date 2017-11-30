@@ -18,7 +18,13 @@ namespace Tic
             board = new Board(new int[boardSize, BoardSize]);
             gameState = new GameState();
         }
-
+        private void ConsoleTextInMiddle()
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+        }
         public void Play()
         {
             int choice = 0;
@@ -57,6 +63,8 @@ namespace Tic
                     gameState.MakeAImove(board);
                 }
                 Console.Clear();
+
+                ConsoleTextInMiddle();
                 board.PrintBoard();
                 Console.WriteLine();
 
