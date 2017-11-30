@@ -17,23 +17,28 @@ namespace Tic
         {
             BoardSize = Game.BoardSize;
         }
-     
-        public GameState FindBestMove(Board board, int player)
+
+        public void MakeAImove(Board board)
+        {
+            GameState bestMove = FindBestMove(board, Game.PlayerO);
+            board.theBoard[bestMove.X, bestMove.Y] = Game.PlayerO; // set the AI move;
+        }
+      
+        private GameState FindBestMove(Board board, int player)
         {
             int res = Game.CheckWinner(board);
-            if (res == Game.playerO)
+            if (res == Game.PlayerO)
             {
                 return new GameState(10);
             }
-            else if (res == Game.playerX)
+            else if (res == Game.PlayerX)
             {
                 return new GameState(-10);
             }
             else if (res == -1)
             {
                 return new GameState(-1);
-            }
-
+            } 
 
             List<GameState> gameStateList = new List<GameState>();
 
@@ -48,14 +53,14 @@ namespace Tic
                         move.Y = j;
                         board.theBoard[i, j] = player;
 
-                        if (player == Game.playerO)
+                        if (player == Game.PlayerO)
                         {
-                            int score = FindBestMove(board, Game.playerX).Score;
+                            int score = FindBestMove(board, Game.PlayerX).Score;
                             move.Score = score;
                         }
                         else
                         {
-                            int score = FindBestMove(board, Game.playerO).Score;
+                            int score = FindBestMove(board, Game.PlayerO).Score;
                             move.Score = score;
                         }
                         gameStateList.Add(move);
@@ -64,7 +69,7 @@ namespace Tic
                 }
             }
             int bestMove = 0;
-            if (player == Game.playerO) //AI player
+            if (player == Game.PlayerO) //AI player
             {
                 int bestScore = -100000;
                 for (int k = 0; k < gameStateList.Count; k++)
@@ -95,11 +100,7 @@ namespace Tic
             return new GameState(10);
 
         }
-        public void MakeAImove(Board board)
-        {
-            GameState bestMove = FindBestMove(board, Game.playerO);
-            board.theBoard[bestMove.X, bestMove.Y] = Game.playerO; // set the AI move;
-        }
+      
     }
 
 }

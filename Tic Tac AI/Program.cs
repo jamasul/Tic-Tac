@@ -7,9 +7,11 @@ namespace Tic
     {
         static void Main(string[] args)
         {
+           
             int choice = 0;
             while (choice != 9)
             {
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("------Tic Tac Toe against AI------");
                 Console.WriteLine("|                                 |");
                 Console.WriteLine("|                                 |");

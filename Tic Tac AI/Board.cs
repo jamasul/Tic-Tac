@@ -28,7 +28,7 @@ namespace Tic
 
                 for (int j = 0; j < BoardSize; j++)
                 {
-                    Console.Write("|__{0}__|", screen[theBoard[i, j]]);
+                   Console.Write("|__{0}__|", screen[theBoard[i, j]]);
 
                 }
                 Console.WriteLine();

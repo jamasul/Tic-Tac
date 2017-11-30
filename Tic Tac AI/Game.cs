@@ -4,10 +4,10 @@ namespace Tic
 {
     public class Game
     {
-        public const int playerX = 1;
-        public const int playerO = 2;
-        public const int available = 0;
-        public const int draw = -1;
+        public const int PlayerX = 1;
+        public const int PlayerO = 2;
+        public const int Available = 0;
+        public const int Draw = 3;
         public static int BoardSize = 3; //default
         public int currentPlayer;
         Board board;
@@ -27,7 +27,7 @@ namespace Tic
             int choice = 0;
             do
             {
-                if (currentPlayer == playerX)
+                if (currentPlayer == PlayerX)
                 {
                     Console.WriteLine("Player X: x: ");
                     if (!int.TryParse(Console.ReadLine(), out int x))
@@ -43,9 +43,9 @@ namespace Tic
 
                     choice = x;
 
-                    if (x <= 3 && y <= 3 && board.theBoard[x, y] == available) //2 means available 1 = X, 0 = O
+                    if (x <= 3 && y <= 3 && board.theBoard[x, y] == Available) //2 means available 1 = X, 0 = O
                     {
-                        board.theBoard[x, y] = playerX;
+                        board.theBoard[x, y] = PlayerX;
                     }
 
                     else
@@ -53,9 +53,10 @@ namespace Tic
                         Console.WriteLine("Invalid field!");
                     }
                 }
+
                 ChangePlayer();
 
-                if (currentPlayer == playerO)
+                if (currentPlayer == PlayerO)
                 {
                     gameState.MakeAImove(board);
                 }
@@ -63,8 +64,25 @@ namespace Tic
 
                 ConsoleTextInMiddle();
                 board.PrintBoard();
-                Console.WriteLine();
-
+                
+                switch (CheckWinner(board))
+                {
+                    case PlayerX:
+                        Console.WriteLine("You Win!");
+                        BeepHumanWin();
+                        break;
+                    case PlayerO:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("AI Wins!");
+                        BeepAIWin();
+                        break;
+                }
+                if (CheckDraw(board) == Draw)
+                {
+                    Console.WriteLine("Draw!");
+                    break;
+                }
+                
             }
             while (choice != 9);
 
@@ -72,102 +90,117 @@ namespace Tic
 
         public void ChangePlayer()
         {
-            if (currentPlayer == playerX)
+            if (currentPlayer == PlayerX)
             {
-                currentPlayer = playerO;
+                currentPlayer = PlayerO;
             }
             else
             {
-                currentPlayer = playerX;
+                currentPlayer = PlayerX;
             }
         }
 
         public static int CheckWinner(Board board)
         {
-            if (CheckWinningPosDiagonal(board.theBoard) == playerX)
+
+            if (CheckWinningPosDiagonal(board.theBoard) == PlayerX)
             {
-                //Console.WriteLine("PlayerX won diagonal!");
-                return playerX;
+                return PlayerX;
             }
-            else if (CheckWinningPosDiagonal(board.theBoard) == playerO)
+            else if (CheckWinningPosDiagonal(board.theBoard) == PlayerO)
             {
-                //Console.WriteLine("PlayerO won diagonal!");
-                return playerO;
+                return PlayerO;
             }
-            if (CheckWinningPosHorisontal(board.theBoard) == playerX)
+            if (CheckWinningPosHorisontal(board.theBoard) == PlayerX)
             {
-                //Console.WriteLine("PlayerX won horisontal!");
-                return playerX;
+                return PlayerX;
             }
-            if (CheckWinningPosHorisontal(board.theBoard) == playerO)
+            if (CheckWinningPosHorisontal(board.theBoard) == PlayerO)
             {
-                //Console.WriteLine("PlayerO won horisontal!");
-                return playerO;
+                return PlayerO;
             }
 
-            if (CheckWinningPosVertical(board.theBoard) == playerX)
+            if (CheckWinningPosVertical(board.theBoard) == PlayerX)
             {
-                //Console.WriteLine("PlayerX won vertical!");
-                return playerX;
+                return PlayerX;
             }
-            if (CheckWinningPosVertical(board.theBoard) == playerO)
+            if (CheckWinningPosVertical(board.theBoard) == PlayerO)
             {
-                //Console.WriteLine("PlayerO won vertical!");
-                return playerO;
+                return PlayerO;
             }
             return 0; //no winners
         }
-
-        public static int CheckWinningPosDiagonal(int[,] currentboard)
+        private int CheckDraw(Board board)
         {
-            if ((currentboard[0, 0] & currentboard[1, 1] & currentboard[2, 2]) == playerX)
+            bool full = true;
+            for (int i = 0; i < BoardSize; i++)
             {
-                return playerX; //playerX won diagonal
+                for (int j = 0; j < BoardSize; j++)
+                {
+                    if (board.theBoard[i, j] == Available)
+                    {
+                        full = false;
+                        return 0;
+                    }
+                }
             }
-
-            if ((currentboard[0, 0] & currentboard[1, 1] & currentboard[2, 2]) == playerO)
+            if (full && CheckWinner(board) != PlayerO && CheckWinner(board) != PlayerX)
             {
-                return playerO; //playerO won diagonal
-            }
-
-            if ((currentboard[0, 2] & currentboard[1, 1] & currentboard[2, 0]) == playerX)
-            {
-                return playerX; //playerX won diagonal
-            }
-
-            if ((currentboard[0, 2] & currentboard[1, 1] & currentboard[2, 0]) == playerO)
-            {
-                return playerO; //playerO won diagonal
+                return Draw;
             }
             return 0;
         }
 
-        public static int CheckWinningPosHorisontal(int[,] currentboard)
+        private static int CheckWinningPosDiagonal(int[,] currentboard)
         {
-            if ((currentboard[0, 0] & currentboard[0, 1] & currentboard[0, 2]) == playerX)
+            if ((currentboard[0, 0] & currentboard[1, 1] & currentboard[2, 2]) == PlayerX)
             {
-                return playerX; //playerX won horisontal
-            }
-            if ((currentboard[1, 0] & currentboard[1, 1] & currentboard[1, 2]) == playerX)
-            {
-                return playerX; //playerX won horisontal
-            }
-            if ((currentboard[2, 0] & currentboard[2, 1] & currentboard[2, 2]) == playerX)
-            {
-                return playerX; //playerX won horisontal
+                return PlayerX; //playerX won diagonal
             }
 
-            if ((currentboard[0, 0] & currentboard[0, 1] & currentboard[0, 2]) == playerO)
+            if ((currentboard[0, 0] & currentboard[1, 1] & currentboard[2, 2]) == PlayerO)
             {
-                return playerO; //playerO won horisontal
+                return PlayerO; //playerO won diagonal
             }
-            if ((currentboard[1, 0] & currentboard[1, 1] & currentboard[1, 2]) == playerO)
+
+            if ((currentboard[0, 2] & currentboard[1, 1] & currentboard[2, 0]) == PlayerX)
             {
-                return playerO; //playerO won horisontal
+                return PlayerX; //playerX won diagonal
             }
-            if ((currentboard[2, 0] & currentboard[2, 1] & currentboard[2, 2]) == playerO)
+
+            if ((currentboard[0, 2] & currentboard[1, 1] & currentboard[2, 0]) == PlayerO)
             {
-                return playerO; //playerO won horisontal
+                return PlayerO; //playerO won diagonal
+            }
+            return 0;
+        }
+
+        private static int CheckWinningPosHorisontal(int[,] currentboard)
+        {
+            if ((currentboard[0, 0] & currentboard[0, 1] & currentboard[0, 2]) == PlayerX)
+            {
+                return PlayerX; //playerX won horisontal
+            }
+            if ((currentboard[1, 0] & currentboard[1, 1] & currentboard[1, 2]) == PlayerX)
+            {
+                return PlayerX; //playerX won horisontal
+            }
+            if ((currentboard[2, 0] & currentboard[2, 1] & currentboard[2, 2]) == PlayerX)
+            {
+                return PlayerX; //playerX won horisontal
+            }
+
+            if ((currentboard[0, 0] & currentboard[0, 1] & currentboard[0, 2]) == PlayerO)
+            {
+                return PlayerO; //playerO won horisontal
+            }
+            if ((currentboard[1, 0] & currentboard[1, 1] & currentboard[1, 2]) == PlayerO)
+            {
+                return PlayerO; //playerO won horisontal
+            }
+            if ((currentboard[2, 0] & currentboard[2, 1] & currentboard[2, 2]) == PlayerO)
+            {
+                return PlayerO; //playerO won horisontal
             }
 
             return 0;
@@ -176,34 +209,58 @@ namespace Tic
         public static int CheckWinningPosVertical(int[,] currentboard)
         {
 
-            if ((currentboard[0, 0] & currentboard[1, 0] & currentboard[2, 0]) == playerX)
+            if ((currentboard[0, 0] & currentboard[1, 0] & currentboard[2, 0]) == PlayerX)
             {
-                return playerX; //playerX won horisontal
+                return PlayerX; //playerX won horisontal
             }
 
-            if ((currentboard[0, 1] & currentboard[1, 1] & currentboard[2, 1]) == playerX)
+            if ((currentboard[0, 1] & currentboard[1, 1] & currentboard[2, 1]) == PlayerX)
             {
-                return playerX; //playerX won horisontal
+                return PlayerX; //playerX won horisontal
             }
-            if ((currentboard[0, 2] & currentboard[1, 2] & currentboard[2, 2]) == playerX)
+            if ((currentboard[0, 2] & currentboard[1, 2] & currentboard[2, 2]) == PlayerX)
             {
-                return playerX; //playerX won horisontal
+                return PlayerX; //playerX won horisontal
             }
 
-            if ((currentboard[0, 0] & currentboard[1, 0] & currentboard[2, 0]) == playerO)
+            if ((currentboard[0, 0] & currentboard[1, 0] & currentboard[2, 0]) == PlayerO)
             {
-                return playerO; //playerO won horisontal
+                return PlayerO; //playerO won horisontal
             }
-            if ((currentboard[0, 1] & currentboard[1, 1] & currentboard[2, 1]) == playerO)
+            if ((currentboard[0, 1] & currentboard[1, 1] & currentboard[2, 1]) == PlayerO)
             {
-                return playerO; //playerO won horisontal
+                return PlayerO; //playerO won horisontal
             }
-            if ((currentboard[0, 2] & currentboard[1, 2] & currentboard[2, 2]) == playerO)
+            if ((currentboard[0, 2] & currentboard[1, 2] & currentboard[2, 2]) == PlayerO)
             {
-                return playerO; //playerO won horisontal
+                return PlayerO; //playerO won horisontal
             }
             return 0;
         }
+        private void BeepAIWin()
+        {
+            Console.Beep(440, 500);
+            Console.Beep(440, 500);
+            Console.Beep(440, 500);
+            Console.Beep(349, 350);
+            Console.Beep(523, 150);
+            Console.Beep(440, 500);
+            Console.Beep(349, 350);
+            Console.Beep(523, 150);
+            Console.Beep(440, 1000);
+            Console.Beep(659, 500);
+            Console.Beep(659, 500);
+            Console.Beep(659, 500);
+            Console.Beep(698, 350);
+            Console.Beep(523, 150);
+            Console.Beep(415, 500);
+            Console.Beep(349, 350);
+            Console.Beep(523, 150);
+            Console.Beep(440, 1000);
+        }
+        private void BeepHumanWin()
+        {
+            Console.Beep(440, 2000);
+        }
     }
-
 }
