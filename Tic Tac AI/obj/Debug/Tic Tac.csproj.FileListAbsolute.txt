@@ -1,0 +1,18 @@
+C:\Users\pa_suja\source\repos\DateTest\DateTest\bin\Debug\DateTest.exe.config
+C:\Users\pa_suja\source\repos\DateTest\DateTest\bin\Debug\DateTest.exe
+C:\Users\pa_suja\source\repos\DateTest\DateTest\bin\Debug\DateTest.pdb
+C:\Users\pa_suja\source\repos\DateTest\DateTest\obj\Debug\Tic Tac.csprojResolveAssemblyReference.cache
+C:\Users\pa_suja\source\repos\DateTest\DateTest\obj\Debug\Tic Tac.csproj.CoreCompileInputs.cache
+C:\Users\pa_suja\source\repos\DateTest\DateTest\obj\Debug\DateTest.exe
+C:\Users\pa_suja\source\repos\DateTest\DateTest\obj\Debug\DateTest.pdb
+C:\Users\pa_suja\source\repos\Tic Tac\DateTest\obj\Debug\Tic Tac.csprojResolveAssemblyReference.cache
+C:\Users\pa_suja\source\repos\Tic Tac\DateTest\obj\Debug\Tic Tac.csproj.CoreCompileInputs.cache
+C:\Users\pa_suja\source\repos\Tic Tac\DateTest\obj\Debug\DateTest.exe
+C:\Users\pa_suja\source\repos\Tic Tac\DateTest\obj\Debug\DateTest.pdb
+C:\Users\pa_suja\source\repos\Tic Tac\Tic Tac AI\obj\Debug\Tic Tac.csprojResolveAssemblyReference.cache
+C:\Users\pa_suja\source\repos\Tic Tac\Tic Tac AI\obj\Debug\Tic Tac.csproj.CoreCompileInputs.cache
+C:\Users\pa_suja\source\repos\Tic Tac\Tic Tac AI\bin\Debug\Tic Tac.exe.config
+C:\Users\pa_suja\source\repos\Tic Tac\Tic Tac AI\bin\Debug\Tic Tac.exe
+C:\Users\pa_suja\source\repos\Tic Tac\Tic Tac AI\bin\Debug\Tic Tac.pdb
+C:\Users\pa_suja\source\repos\Tic Tac\Tic Tac AI\obj\Debug\Tic Tac.exe
+C:\Users\pa_suja\source\repos\Tic Tac\Tic Tac AI\obj\Debug\Tic Tac.pdb

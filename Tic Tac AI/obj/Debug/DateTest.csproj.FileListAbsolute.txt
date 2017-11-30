@@ -1,0 +1,7 @@
+C:\Users\pa_suja\source\repos\DateTest\DateTest\bin\Debug\DateTest.exe.config
+C:\Users\pa_suja\source\repos\DateTest\DateTest\bin\Debug\DateTest.exe
+C:\Users\pa_suja\source\repos\DateTest\DateTest\bin\Debug\DateTest.pdb
+C:\Users\pa_suja\source\repos\DateTest\DateTest\obj\Debug\DateTest.csprojResolveAssemblyReference.cache
+C:\Users\pa_suja\source\repos\DateTest\DateTest\obj\Debug\DateTest.csproj.CoreCompileInputs.cache
+C:\Users\pa_suja\source\repos\DateTest\DateTest\obj\Debug\DateTest.exe
+C:\Users\pa_suja\source\repos\DateTest\DateTest\obj\Debug\DateTest.pdb

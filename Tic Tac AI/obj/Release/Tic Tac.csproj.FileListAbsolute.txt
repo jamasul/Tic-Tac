@@ -1,0 +1,6 @@
+C:\Users\pa_suja\source\repos\Tic Tac\Tic Tac AI\bin\Release\Tic Tac.exe.config
+C:\Users\pa_suja\source\repos\Tic Tac\Tic Tac AI\bin\Release\Tic Tac.exe
+C:\Users\pa_suja\source\repos\Tic Tac\Tic Tac AI\bin\Release\Tic Tac.pdb
+C:\Users\pa_suja\source\repos\Tic Tac\Tic Tac AI\obj\Release\Tic Tac.csproj.CoreCompileInputs.cache
+C:\Users\pa_suja\source\repos\Tic Tac\Tic Tac AI\obj\Release\Tic Tac.exe
+C:\Users\pa_suja\source\repos\Tic Tac\Tic Tac AI\obj\Release\Tic Tac.pdb
